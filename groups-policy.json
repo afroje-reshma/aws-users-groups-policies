@@ -1,0 +1,59 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Description" : "GeoWave group with s3 and emr full access",
+
+   "Resources" : {
+   "IAMPolicy" : {
+      "Type" : "Custom::StackOutputs",
+       "Properties" : {
+         "StackName" : "iam-policy"
+       }
+    },
+
+
+
+   
+   "GeoWave" : {
+      "Type" : "AWS::IAM::Group",
+       "Properties" : {
+          "GroupName" : "GeoWave",
+           "Path" : "/"
+       }
+    },
+ 
+   "GeoWaveS3Policy" : {
+      "Type" : "AWS::IAM::ManagedPolicy",
+      "Properties" : {
+        "Path" : "/",
+        "PolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [{
+            "Effect"   : "Allow",
+            "Action"   : "s3:*",
+            "Resource" : "*"
+        }]
+     },
+   "Groups" : [{ "Ref" : "GeoWave" }]
+
+     } 
+   },
+  
+   "GeoWaveEMRPolicy" : {
+      "Type" : "AWS::IAM::ManagedPolicy",
+      "Properties" : {
+        "Path" : "/",
+        "PolicyDocument" : {
+        "Version" : "2012-10-17",
+          "Statement": [{
+            "Effect"   : "Allow",
+            "Action"   : "elasticmapreduce:*",
+            "Resource" : "*"
+          }]
+        },
+
+   "Groups" : [{ "Ref" : "GeoWave" }]
+     }
+   }
+ }
+} 

@@ -1,0 +1,23 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "[GeoWave] IAM Users",
+
+  "Resources": {
+
+    "IamPolicy" : {
+      "Type" : "Custom::StackOutputs",
+      "Properties" : {
+        "StackName": "iam-policy"
+      }
+    },
+
+   
+    "jreshma" : {
+      "Type" : "AWS::IAM::User",
+      "Properties" : {
+        "UserName": "jreshma",
+        "Groups" : [ { "Fn::GetAtt" : [ "GroupName", "GeoWave" ] } ]
+      }
+    }
+  }
+}
