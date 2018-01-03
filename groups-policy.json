@@ -4,16 +4,6 @@
   "Description" : "GeoWave group with s3 and emr full access",
 
    "Resources" : {
-   "IAMPolicy" : {
-      "Type" : "Custom::StackOutputs",
-       "Properties" : {
-         "StackName" : "iam-policy"
-       }
-    },
-
-
-
-   
    "GeoWave" : {
       "Type" : "AWS::IAM::Group",
        "Properties" : {

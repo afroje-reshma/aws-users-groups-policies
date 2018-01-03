@@ -4,19 +4,11 @@
 
   "Resources": {
 
-    "IamPolicy" : {
-      "Type" : "Custom::StackOutputs",
-      "Properties" : {
-        "StackName": "iam-policy"
-      }
-    },
-
-   
-    "jreshma" : {
+  "jreshma" : {
       "Type" : "AWS::IAM::User",
       "Properties" : {
-        "UserName": "jreshma",
-        "Groups" : [ { "Fn::GetAtt" : [ "GroupName", "GeoWave" ] } ]
+        "Path" : "/geowave/",
+        "UserName": "jreshma"
       }
     }
   }

@@ -35,10 +35,10 @@ function stackwait {
 
 
 
-ctl groups-policy
+ctl groups-policy $profile
 stackwait groups-policy
 
-ctl users
+ctl users $profile
 stackwait users 
 #ctl users 
 
